@@ -1,0 +1,184 @@
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <body style="background-color: white;overflow-y:scroll;height:100%;">
+        <div style="width:100%;background-color:#2a4057;height:10%;">
+               <div>
+                  <app-head></app-head>
+               </div>
+            <img src="assets/img/logo.png" style="width:100px;height:50px; margin-left:85%;">
+        </div>
+        <br>
+
+                <h1 id="TitulosGraficos"></h1>
+  
+        <div style="border:solid 1px;width: 80%;margin-left:100px;padding: 20px; display:inline-block; border-radius: 10px;">
+            <div style="display: inline-block;width: 49%;min-width:200px;">
+                <div style="display: inline-block;width: 60%;" >
+                    <label style="font-size: 15px;" id ="labelFechaini">Fecha de Inicios</label> 
+                    <input type= "date" id="fechaIni">
+                </div>
+            </div>
+            <div style="display: inline-block;width: 49%;min-width:200px;">
+                <div style="display: inline-block;width: 60%;" >
+                    <label style="font-size: 15px;" id ="labelFechaFin">Fecha Final</label> 
+                    <input type= "date" id="fechaFin">
+                </div>
+            </div>
+            <div style="display: inline-block;width: 200px;">
+                <label style="font-size: 15px;" id ="labelFrigorifico3">Patente</label>
+                <select id="frigorifico">
+                    <option>LJFJ-18</option>
+                    <option>KFJS-24</option>
+                </select>
+            </div>
+            <div style="display: inline-block;width: 200px;">
+                <label style="font-size: 15px;" id ="labelCamaras2">Cliente</label>
+                <select id="camaras">
+                    <option>Municipalidad Puente Alto</option>
+                    <option>Junta de Vecinos</option>
+                    
+                </select>
+            </div>
+            <div style="display: inline-block;width: 170px;">
+                <br>
+                <input type="button" style="font-size: 15px;border-radius: 10px;" id ="buscar" value ="Buscar" onclick="filtrar2()" class="btn-primary">
+            </div>
+            </div>
+            <br>
+            <br>   
+            <br>
+            <i class="fa fa-file-pdf-o" id="downloadPdf" style="color: red;font-size: 60px;margin-left: 100px;margin-top: -35px;" ></i>
+            <div id="reportPage">
+                    <label id ="GrafTitulo"></label>
+                    <br>
+                    <label id="tiempos"> </label>
+                    <label id="temp"> </label>
+                <div id="graf" style='width:50%;height: 20%;margin-left:25%'>
+                    <canvas id="myChart" style='width:400px;height: 250px;font-size: 20px;'></canvas>  
+                </div>
+    
+        </div>
+        <label id ="hoy"></label>
+    
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="node_modules/file-saver/dist/FileSaver.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    
+    <script>
+        var per ;
+
+    $("#fechaIni").change(function(){
+        var f=$("#fechaIni").val();
+        f=f.split("-");
+        var ff=parseInt(f[2])+6;
+        var f=f[0]+"-"+f[1]+"-"+ff;
+        $("#fechaFin").val(f);
+        console.log(f);
+    });
+    
+    
+    $('#downloadPdf').click(function(event) {
+        document.getElementById("graf").style="width:1000px;";
+        var pdf = new jsPDF('l', 'pt', 'letter');
+            source = $('#reportPage')[0];
+    
+            specialElementHandlers = {
+                '#bypassme': function (element, renderer) {
+                    return true
+                }
+            };
+            margins = {
+                top: 80,
+                bottom: 60,
+                left: 40,
+                width: 1000
+            };
+    
+          
+      // get size of report page
+      var reportPageHeight = $('#reportPage').innerHeight();
+      var reportPageWidth = $('#reportPage').innerWidth();
+      
+      // create a new canvas object that we will populate with all other canvas objects
+      var pdfCanvas = $('<canvas />').attr({
+        id: "canvaspdf",
+        width: 2000,
+        height: 500
+      });
+      
+      // keep track canvas position
+      var pdfctx = $(pdfCanvas)[0].getContext('2d');
+      var pdfctxX = 50;
+      var pdfctxY = 0;
+      var buffer = 100;
+      
+      // for each chart.js chart
+      $("canvas").each(function(index) {
+        // get the chart height/width
+        var canvasHeight = $(this).innerHeight();
+        var canvasWidth = $(this).innerWidth();
+        
+        // draw the chart into the new canvas
+        pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
+        pdfctxX += canvasWidth + buffer;
+        
+        // our report page is in a grid pattern so replicate that in the new canvas
+        if (index % 2 === 1) {
+          pdfctxX = 0;
+          pdfctxY += canvasHeight + buffer;
+        }
+      });
+    
+      // create new pdf and add our new canvas as an image
+      pdf.addImage($(pdfCanvas)[0], 'PNG', 10, 200);
+      pdf.fromHTML(
+                source, 
+                margins.left, // x coord
+                margins.top, { // y coord
+                    'width': 1000, 
+                    'elementHandlers': specialElementHandlers
+                },
+                function (dispose) {
+                    const pageCount = pdf.internal.getNumberOfPages();
+                    for(var i = 0; i <= pageCount; i++) {
+                        pdf.text($("#hoy").html(),600,550);
+                    }
+                    pdf.save('Reporte Frigrifico.pdf');
+                }, margins
+            );
+        document.getElementById("graf").style="width:50%;margin-left:25%";
+    // and
+    });
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'pie',
+            // The data for our dataset
+            data : {
+                datasets: [{
+                    data: [10, 20, 30],
+                    backgroundColor: [
+                        '#27B497',
+                        '#3C81BF',
+                        '#F34A56',
+                    ],
+                }],
+               
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'Retiro',
+                    'Limpieza',
+                    'Arriendo'
+                ]
+            }
+        });
+    </script>

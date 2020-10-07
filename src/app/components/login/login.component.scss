@@ -1,0 +1,65 @@
+.wallpaper {
+  background-image: url("../../../assets/img/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  // width: 30vw;
+  height: 100vh;
+
+  div {
+    height: 100vh;
+
+    h3 {
+      font-weight: 600;
+      font-size: 36px;
+      color: white;
+    }
+
+    button {
+      width: 60%;
+      padding: .5em;
+      background-color: #429b0a;
+      color: white;
+      font-size: 18px;
+    }
+  }
+}
+
+.section {
+  .section__logo {
+    margin-top: 25px;
+    margin-right: 50px;
+  }
+
+  .section__form {
+    height: 50vh;
+    h3 {
+      font-size: 48px;
+      color: #429b0a;
+    }
+    form {
+      width: 30vw;
+      mat-form-field {
+        width: 100%;
+        margin: 15px 0;
+      }
+    }
+
+    .section__form-recovery {
+      width: 100%;
+    }
+
+    div {
+      width: 100%;
+      .section__btn-login {
+        width: 30%;
+        padding: .5em;
+        background-color: #429b0a;
+        color: white;
+        font-size: 18px;
+        margin-top: 30px;
+      }
+
+    }
+
+  }
+}

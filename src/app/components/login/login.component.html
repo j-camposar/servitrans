@@ -1,0 +1,48 @@
+<div fxLayout="row">
+  <div fxFlex="30" class="wallpaper">
+    <!-- <img src="assets/img/wallpaper.jpg" class="wallpaper" alt="imagen no disponible"> -->
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h3>Sumate a la Nueva Experiencia</h3>
+      <button mat-raised-button color="primary">Registrarse</button>
+    </div>
+  </div>
+
+  <div fxFlex="70" class="section">
+    <div class="section__logo"  fxLayout="row" fxLayoutAlign="end center">
+      <img src="assets/img/logo.png" alt="logo servitrans" width="150">
+    </div>
+
+    <div class="section__form" fxLayout="column" fxLayoutAlign="center center">
+      <h3>Bienvenido</h3>
+      <form fxLayout="column" fxLayoutAlign="center center">
+        <mat-form-field appearance="legacy">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput placeholder="Placeholder">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" matInput placeholder="Placeholder">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+
+        <div class="section__form-recovery" fxLayout="row" fxLayoutAlign="space-between center">
+          <section class="example-section">
+            <mat-checkbox class="example-margin">Mantener sesión</mat-checkbox>
+          </section>
+
+          <a href="#">
+            Recuperar contraseña
+          </a>
+        </div>
+
+        <div>
+          <button class="section__btn-login" mat-raised-button color="primary">Ingresar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

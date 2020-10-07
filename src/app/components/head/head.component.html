@@ -1,0 +1,101 @@
+
+
+  <div id="head" style="width:100%;background-color:black;height:8%;">
+  <div class="page-wrapper chiller-theme " style="position: absolute;">
+      <mat-button-toggle id="show-sidebar" class="btn btn btn-dark" >
+      <i class="fa fa-bars"></i>
+      <span>Menu</span>
+      </mat-button-toggle>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+   
+          <mat-button-toggle id="close-sidebar">
+            <i class="fas fa-times"></i>
+          </mat-button-toggle>
+        </div>
+        <div class="sidebar-header">
+      
+          <div class="user-info">
+            <span class="user-name" style="display:inline-block">Jhon
+              <strong>Smith</strong>
+            </span>
+            <span style="display:inline-block"class="user-status">
+              <i class="fa fa-circle"></i>
+            </span>
+            <span class="user-role">Administrator</span>
+  
+          </div>
+        </div>
+        <!-- sidebar-header  -->
+       
+        <!-- sidebar-search  -->
+        <div class="sidebar-menu" style="font-size: 15px;">
+          <ul>
+            <li class="sidebar-dropdown">
+              <a href="index.html">
+                <i class="far fa-clipboard" ></i>
+                <span id="LabelAgregarPerfil">Retiros</span>
+              </a>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="graficos2.html" >
+                <i class="fas fa-asterisk" ></i>
+                <span  id="labelFrigorifico">Graficos</span>
+              </a>
+            </li>
+            <!--<li class="sidebar-dropdown">
+              <a href="prefactura.html" >
+                <i class="fas fa-asterisk" ></i>
+                <span  id="labelFrigorifico">Prefactura</span>
+              </a>
+            </li>-->
+            <li>
+              <a href="#" id="ingles">
+                <i class="fas fa-sign-out-alt"></i>
+                <span id="labelCerrar">Cerrar Sesion</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- sidebar-menu  -->
+      </div>
+      <!-- sidebar-content  -->
+    </nav>
+    <!-- page-content" -->
+  </div>
+  </div>
+  
+
+  <script>
+  
+	$(".sidebar-dropdown > a").click(function() {
+    $(".sidebar-submenu").slideUp(200);
+    if (
+      $(this)
+        .parent()
+        .hasClass("active")
+    ) {
+      $(".sidebar-dropdown").removeClass("active");
+      $(this)
+        .parent()
+        .removeClass("active");
+    } else {
+      $(".sidebar-dropdown").removeClass("active");
+      $(this)
+        .next(".sidebar-submenu")
+        .slideDown(200);
+      $(this)
+        .parent()
+        .addClass("active");
+    }
+});
+
+$("#close-sidebar").click(function() {
+  $(".page-wrapper").removeClass("toggled");
+});
+$("#show-sidebar").click(function() {
+  $(".page-wrapper").addClass("toggled");
+});
+
+</script>
