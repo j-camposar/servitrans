@@ -1,1 +1,118 @@
-<p>registros works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body style="background-color:white">
+        <div style="width:100%;background-color:#2a4057;height:10%;">
+                <div>
+                   <app-head></app-head>
+                </div>
+             <img src="assets/img/logo.png" style="width:100px;height:50px; margin-left:85%;">
+         </div>
+        <div style="overflow-y:scroll;height: 80%;">
+            <br>      
+            <br>  
+                <h1 id="TitulosRegistro"></h1>
+            <div style="border:solid 1px;width: 80%;margin-left:100px;padding: 20px; display:inline-block; border-radius: 10px;">
+            <div style="display: inline-block;width: 49%;min-width:200px;">
+                <div style="display: inline-block;width: 60%;" >
+                    <label style="font-size: 15px;" id ="labelFechaini">Fecha de Inicios</label> 
+                    <input type= "date" id="fechaIni">
+                </div>
+            </div>
+            <div style="display: inline-block;width: 49%;min-width:200px;">
+                <div style="display: inline-block;width: 60%;" >
+                    <label style="font-size: 15px;" id ="labelFechaFin">Fecha Final</label> 
+                    <input type= "date" id="fechaFin">
+                </div>
+            </div>
+            <div style="display: inline-block;width: 200px;">
+                <label style="font-size: 15px;" id ="labelFrigorifico3">Patente</label>
+                <select id="frigorifico">
+                    <option>LJFJ-18</option>
+                    <option>KFJS-24</option>
+                </select>
+            </div>
+            <div style="display: inline-block;width: 200px;">
+                <label style="font-size: 15px;" id ="labelCamaras2">Cliente</label>
+                <select id="camaras">
+                    <option>Municipalidad Puente Alto</option>
+                    <option>Junta de Vecinos</option>
+                    
+                </select>
+            </div>
+          
+            <div style="display: inline-block;width: 200px;">
+                <br>
+                <input type="button" style="font-size: 15px;border-radius: 10px;" id ="buscar" value="Buscar"onclick="filtrar();" class="btn-primary">
+            </div>
+            </div>
+            <div style="width:90%"> 
+            <!--<i class="fa fa-plus-circle" style="float:right;font-size: 30px;" onclick="abrir()"></i>-->
+            <br>
+            <br>
+                <table id ="tab" style="text-align: center; font-size: 15px;width:100%"  name ="tab" class="display cell-border" >
+                    <thead>
+                        <tr>
+                            <th id="labelFecha">N°</th>
+                            <th id="labelKey">Patente</th>
+                            <th id="labelTipoSensores2">Fecha</th>
+                            <th id="labelUnidadMedida">Serivicio</th>
+                            <th id="labelValor">Sede </th>
+                            <th id="labelCorregido">Cliente</th>
+                            <th id="labelFechaCorreccion">Rut</th>
+                            <th id="labelName">Mes</th>
+                            <th id="labelFrigorifico2">Region</th>
+                            <th id="labelCamaras">Kilos</th>
+                            <th id="labelUsuarioCorreccion">Litros</th>
+                            <th id="labelMedicion">Valor Litro</th>
+                            <th id="editar">Adisional Litro</th>
+                            <th id="editar">Dscto Litro</th>
+                            <th id="editar">Tope Litro</th>
+                            <th id="editar">Valor Fijo Mensual</th>
+                            <th id="editar"> Valor Material</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="iframe" style="display:none">
+            <form action="" class="formulario_2" >  
+                  <br>      
+                <h3 id="LabelEditRegistro">Registros</h3>
+                <br>
+                <div class="Perfilpos" >   
+                    <li class="form-list__row" style="width: 49%;display: inline-block;">
+                        <label id="labelKey2"></label>
+                        <input type="text" id="key2"  > 
+                    </li>
+                    <br>
+                 
+                    <li class="form-list__row" style="width: 49%;display: inline-block;">
+                        <label id="labelUnidadMedida2"></label>
+                        <input type="text" name="medida" id="medida"  type="text" value="F°" disabled >                 
+                    </li>
+                    <li class="form-list__row" style="width: 49%;display: inline-block;">
+                        <label id="labelValor2"></label>
+                        <input type="text" name="valor" id="valor"  type="text" >                 
+                    </li>
+                    <br>
+                    <li class="form-list__row" style="width: 49%;display: inline-block;">
+                        <label id="labelUnidadMedida3"></label>
+                        <input type="text" name="medida" id="medida"  type="text" disabled value="F°" >                 
+                    </li>
+                    <li class="form-list__row" style="width: 49%;display: inline-block;">
+                        <label id="labelValor3"></label>
+                        <input type="text" name="valor" id="valor2"  type="text"  >                 
+                    </li>
+                    <br> 
+                    <br> 
+                    <br> 
+                    <input type="button" value="Editar" id="Editar" class="btn-primary" onclick="editar()" style="border-radius:  10px;font-size: 20px;display: inline-block;width: 47%;" >
+                    <input type="button" value="Cancelar" id="Cancelar" class="btn-danger Cancelar"  style="border-radius:  10px;font-size: 20px;display: inline-block;width: 47%;;margin-left:5px;" >
+                    <br> 
+                    <label id="LabelNota"></label>
+                </div>  
+            </form>
+        </div>
+    </body>

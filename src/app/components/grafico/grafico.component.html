@@ -2,7 +2,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,9 +15,8 @@
             <img src="assets/img/logo.png" style="width:100px;height:50px; margin-left:85%;">
         </div>
         <br>
-
                 <h1 id="TitulosGraficos"></h1>
-  
+
         <div style="border:solid 1px;width: 80%;margin-left:100px;padding: 20px; display:inline-block; border-radius: 10px;">
             <div style="display: inline-block;width: 49%;min-width:200px;">
                 <div style="display: inline-block;width: 60%;" >
@@ -62,16 +60,14 @@
                     <label id="tiempos"> </label>
                     <label id="temp"> </label>
                 <div id="graf" style='width:50%;height: 20%;margin-left:25%'>
-                    <canvas id="myChart" style='width:400px;height: 250px;font-size: 20px;'></canvas>  
+                    <canvas id="realtime" style='width:400px;height: 250px;font-size: 20px;'></canvas>  
                 </div>
     
         </div>
         <label id ="hoy"></label>
     
     </body>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="node_modules/file-saver/dist/FileSaver.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
     
     <script>
         var per ;
@@ -158,27 +154,5 @@
         document.getElementById("graf").style="width:50%;margin-left:25%";
     // and
     });
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'pie',
-            // The data for our dataset
-            data : {
-                datasets: [{
-                    data: [10, 20, 30],
-                    backgroundColor: [
-                        '#27B497',
-                        '#3C81BF',
-                        '#F34A56',
-                    ],
-                }],
-               
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                    'Retiro',
-                    'Limpieza',
-                    'Arriendo'
-                ]
-            }
-        });
+
     </script>

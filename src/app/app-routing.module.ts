@@ -7,7 +7,7 @@ import { RegistrosComponent } from './components/registros/registros.component';
 import { PrefacturaComponent } from './components/prefactura/prefactura.component';
 
 const routes: Routes = [
-  { path: 'ingresar', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'head', component: HeadComponent },
   { path: 'grafico', component: GraficoComponent },
   { path: 'registros', component: RegistrosComponent },

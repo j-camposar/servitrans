@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
+import * as $ from 'jquery';
+import { CanActivate, Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   public formLogin;
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,private router2: Router
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +23,10 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  ingresar():void{
+   this.router2.navigate(['/grafico']);
   }
 
 }
